@@ -1,0 +1,7 @@
+{
+  "name": "MoviePedia",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
