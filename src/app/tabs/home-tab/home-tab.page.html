@@ -1,0 +1,74 @@
+<ion-content [fullscreen]="true">
+
+  <section class="parent">
+
+    <div class="header">
+
+      <span class="title">movie<span style="color: red;">pedia</span></span>
+
+      <!-- <ion-item class="typeSelector" lines=none>
+        <ion-select aria-label="Fruit" interface="popover" placeholder="Select fruit">
+          <ion-select-option value="apples">Apples</ion-select-option>
+          <ion-select-option value="oranges">Oranges</ion-select-option>
+          <ion-select-option value="bananas">Bananas</ion-select-option>
+        </ion-select>
+      </ion-item> -->
+
+      <div class="typeSelector">
+
+        <select name="" id="">
+          <option value="upcoming" selected>Upcomings</option>
+          <option value="upcoming">Top Rated</option>
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="swiperContainer">
+
+      <swiper class="swiper" #titleMoviesSwiper [spaceBetween]="10" [pagination]="{ clickable: true }"
+        [autoplay]="{ delay: 10000, disableOnInteraction: false }" [loop]="false" [speed]="280">
+        <ng-template class="slide" swiperSlide *ngFor="let movie of titleMovies">
+          <img class="moviePoster" [lazyLoad]="movie.image" [defaultImage]="movie.compressedImg">
+        </ng-template>
+      </swiper>
+
+    </div>
+
+    <div class="content" *ngIf="topWeekendMovies && topWeekendMovies.length != 0">
+
+      <span class="label">Weekend Top Picks</span>
+
+      <div class="container scroll-verticall">
+
+        <movie-tile [src]="movie.compressedImg" *ngFor="let movie of topWeekendMovies"
+        parentMaxWidth="40vw" parentWidth="max-content" parentHeight="100%" imgMaxHeight="100%" imgBorderRadius="12px" imgHeight="100%">
+
+        </movie-tile>
+
+        <div class="viewMore">
+
+          <ion-icon name="arrow-forward-circle"></ion-icon>
+          <span>View more</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="bottomLoadingContainer" *ngIf="isContentLoading">
+
+    <div class="loaderOuter">
+
+      <span>Hang on loading content</span>
+      <ion-spinner name="dots"></ion-spinner>
+
+    </div>
+
+  </div>
+
+</ion-content>

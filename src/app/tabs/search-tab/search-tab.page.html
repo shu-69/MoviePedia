@@ -1,0 +1,41 @@
+
+<ion-content [fullscreen]="true">
+
+  <section class="parent">
+
+    <div class="searchBar">
+      
+      <img class="searchIcon" src="../../../assets/iconsaxicons/outline/search-normal-1.svg" alt="">
+      <input type="text" #searchInput placeholder="Search for Movie/Series" (input)="noResult = false" (change)="doSearch(searchInput.value, true)" [(ngModel)]="currentPrompt" >
+      <img class="micIcon" src="../../../assets/iconsaxicons/outline/microphone-2.svg" alt="" (click)="startSpeechRecognization()">
+
+    </div>
+
+    <ion-progress-bar class="searchProgressBar" type="indeterminate" *ngIf="isSearching"></ion-progress-bar>
+
+    <span class="searchResulText" *ngIf="searchResults && searchResults.length != 0 && searchResultText != '' && !noResult">{{searchResultText}}</span>
+
+    <div class="resultsContainer">
+
+      <movie-tile [src]="result.image" *ngFor="let result of searchResults"
+      imgBorderRadius="6px" [imgObjectFit]="result.image == imageErrorAlt ? 'none' : 'cover'"
+      [imgBackground]="result.image == imageErrorAlt ? 'rgb(225 225 225 / 10%)' : ''">
+      </movie-tile>
+
+    </div>
+
+    <div class="noResults" *ngIf="noResult && currentPrompt != ''">
+
+      <span>No Result for '{{currentPrompt}}'</span>
+
+    </div>
+
+    <ion-infinite-scroll #infiniteScroll *ngIf="nextPage" (ionInfinite)="onIonInfinite()">
+      <ion-infinite-scroll-content>
+
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </section>
+
+</ion-content>

@@ -1,0 +1,73 @@
+<ion-content [fullscreen]="true">
+
+    <section class="parent">
+
+        <div class="header">
+
+            <div class="logo">
+
+                <span hidden>movie<span style="color: red;">pedia</span></span>
+    
+            </div>
+    
+            <div class="skip">
+    
+                <span>Skip</span>
+    
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <input type="email" name="email" class="input" placeholder="Email">
+
+            <div style="display: flex; align-items: center;">
+                <input [type]="showPassword ? 'text' : 'password'" name="password" class="input" placeholder="Password">
+                <ion-icon class="passwordEye" [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+                    (click)="showPassword = !showPassword"></ion-icon>
+            </div>
+
+            <div style="display: flex; justify-content: space-between;">
+
+                <div class="rememberMeContainer">
+
+                    <label class="checkBox">
+                        <input id="ch1" type="checkbox">
+                        <div class="transition"></div>
+                    </label>
+                    <label for="ch1">Remember me</label>
+                    
+                </div>
+
+                <span class="colorPrimary">Forget password?</span>
+
+            </div>
+
+            <ion-button class="signInButton">Sign In</ion-button>
+
+            <span style="margin-left: auto; margin-right: auto; font-family: 'Poppins-Light';">or</span>
+
+            <button class="socialLogin" (click)="processGoogleLogin()">
+
+                <img src="../../assets/pichonicons/icons8_google_100px.png" alt="">
+
+                <span>Continue with Google</span>
+
+            </button>
+
+            <button class="socialLogin" (click)="processFacebookLogin()">
+
+                <img src="../../assets/pichonicons/icons8_facebook_100px.png" alt="">
+
+                <span>Continue with Facebook</span>
+
+            </button>
+
+            <span>Don't have an account? <span class="colorPrimary">Sign Up</span></span>
+
+        </div>
+
+    </section>
+
+</ion-content>

@@ -1,27 +1,42 @@
-#container {
-  text-align: center;
+ion-tabs {
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  ion-tab-bar {
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+    --background: black;
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+    ion-tab-button {
 
-  color: #8c8c8c;
+      ion-img {
 
-  margin: 0;
-}
+        filter: brightness(0) saturate(100%) invert(35%) sepia(3%) saturate(22%) hue-rotate(4deg) brightness(92%) contrast(82%);
 
-#container a {
-  text-decoration: none;
+      }
+
+      ion-label {
+
+        margin-top: 6px;
+        font-family: 'Poppins-Regular';
+
+      }
+      
+    }
+
+    ion-tab-button.selected {
+
+      ion-img {
+
+        filter: brightness(0) saturate(100%) invert(96%) sepia(0%) saturate(7489%) hue-rotate(171deg) brightness(102%) contrast(106%);
+
+      }
+
+      ion-label {
+
+        color: white;
+
+      }
+
+    }
+
+  }
+
 }

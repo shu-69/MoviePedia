@@ -8,8 +8,28 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'authenticate',
     pathMatch: 'full'
+  },
+  {
+    path: 'splash-screen',
+    loadChildren: () => import('./splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
+  },
+  {
+    path: 'home-tab',
+    loadChildren: () => import('./tabs/home-tab/home-tab.module').then( m => m.HomeTabPageModule)
+  },
+  {
+    path: 'search-tab',
+    loadChildren: () => import('./tabs/search-tab/search-tab.module').then( m => m.SearchTabPageModule)
+  },
+  {
+    path: 'upcoming-tab',
+    loadChildren: () => import('./tabs/upcoming-tab/upcoming-tab.module').then( m => m.UpcomingTabPageModule)
+  },
+  {
+    path: 'authenticate',
+    loadChildren: () => import('./authenticate/authenticate.module').then( m => m.AuthenticatePageModule)
   },
 ];
 

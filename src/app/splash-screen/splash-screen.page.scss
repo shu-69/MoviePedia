@@ -1,0 +1,32 @@
+ion-content {
+
+    --background: black;
+
+    .parent {
+
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+
+        .title {
+
+            color: white;
+            margin: auto;
+            font-family: 'Poppins-Bold';
+            font-size: 10vw;
+
+        }
+
+        ion-spinner {
+
+            --color: white;
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+    }
+
+}

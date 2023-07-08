@@ -1,0 +1,244 @@
+ion-content {
+
+  --background: black;
+  --padding-bottom: 20px;
+
+  section.parent {
+
+    display: flex;
+    flex-flow: column;
+    // background: black;
+
+    .header {
+
+      z-index: 10;
+      width: 100%;
+      justify-content: start;
+      align-content: start;
+      flex-wrap: wrap;
+      padding: 40px 20px 50px 20px;
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      background: linear-gradient(to top, transparent, #000000b3);
+      // pointer-events: none;
+
+      .title {
+
+        color: white;
+        // margin: auto;
+        font-family: 'Poppins-Bold';
+        font-size: 26px;
+
+      }
+
+      .typeSelector {
+
+        background: #ffffff87;
+        border-radius: 10px;
+        color: black;
+        display: flex;
+        padding: 0 10px;
+        font-family: 'Poppins-Regular';
+        font-size: 14px;
+
+        select {
+
+          background: transparent;
+          border: none;
+          outline: none;
+
+        }
+
+      }
+
+    }
+
+    .swiperContainer {
+
+      color: white;
+      display: flex;
+      flex-flow: column;
+      max-height: 70vh; // TODO :
+      height: 70vh;
+      min-height: 70vh; // TODO :
+
+      .swiper {
+
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        color: white;
+        // padding-bottom: 55px; // TODO :
+
+        //--swiper-pagination-color: #FFBA08;
+        --swiper-pagination-bullet-inactive-color: rgb(82, 82, 82, 40%);
+        --swiper-pagination-bullet-inactive-opacity: 1;
+        --swiper-pagination-bullet-size: 16px;
+        --swiper-pagination-bullet-width: 20px;
+        --swiper-pagination-bullet-height: 2px;
+        --swiper-pagination-bullet-horizontal-gap: 6px;
+
+        .slide {
+
+          // backdrop-filter: blur(4px);
+          // background: rgb(44 44 44 / 60%);
+          // padding: 3% 4%;
+          // color: white;
+          // font-size: 18px;
+          // font-family: 'Poppins-Regular';
+          // height: 100%;
+          // border-radius: 20px;
+          // margin-left: 40px;
+          // margin-right: 40px;
+
+          img.moviePoster {
+
+            object-fit: cover;
+            max-height: 100%;
+            width: 100%;
+
+          }
+
+        }
+
+        .swiper-pagination {
+          //bottom: -20px;
+
+          background: linear-gradient(to bottom, transparent, black);
+          height: 100%;
+          display: flex;
+          align-items: self-end;
+          justify-content: center;
+          padding-bottom: 20px;
+          height: 30%;
+          bottom: 0;
+          pointer-events: none;
+
+          .swiper-pagination-bullet {
+            pointer-events: auto;
+            border-radius: 0px;
+          }
+
+        }
+
+        .swiper-pagination-bullet-active {
+          background-color: #ffffff !important;
+        }
+
+      }
+
+      // .bottomGradient {
+
+      //   background: linear-gradient(to bottom, transparent, black);
+      //   height: 120px;
+      //   margin-top: -120px;
+      //   z-index: 10;
+      //   position: absolute;
+      //   width: 100%;
+
+      // }
+
+    }
+
+    .content {
+
+      display: flex;
+      flex-flow: column;
+      gap: 20px;
+      padding: 20px;
+
+      .label {
+
+        font-family: 'Poppins-Regular';
+        font-size: 20px;
+
+      }
+
+      .container {
+
+        display: flex;
+        margin: 0 -20px 0 -20px;
+        gap: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+
+      }
+
+      .container.scroll-verticall {
+
+        overflow-x: auto;
+
+      }
+
+      .viewMore {
+
+        display: flex;
+        flex-flow: column;
+        gap: 15px;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        width: 40vw;
+        min-width: 40vw;
+        background: #ffffff0f;
+        border-radius: 16px;
+        font-family: 'Poppins-Regular';
+        font-size: 14px;
+
+        ion-icon {
+
+          width: 25px;
+          height: 25px;
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .bottomLoadingContainer {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins-Light';
+    font-size: 14px;
+    color: white;
+
+    .loaderOuter {
+
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgb(255 255 255 / 5%);
+      border-radius: 26px;
+      padding: 10px 20px;
+
+    }
+
+  }
+
+}
+
+::ng-deep {
+
+  .parent {
+
+    .header {
+
+      .typeSelector ion-select .select-wrapper {
+
+        height: 40px;
+        min-height: 40px;
+
+      }
+
+    }
+
+  }
+
+
+}

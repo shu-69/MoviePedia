@@ -24,3 +24,65 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+// For swiper
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
+
+@font-face {
+    font-family: 'ProstoOne';
+    src: url('assets/fonts/Prosto_One/ProstoOne-Regular.ttf');
+  }
+  
+  @font-face {
+    font-family: Poppins-Regular;
+    src: url(./assets/fonts/Poppins/Poppins-Regular.ttf);
+  }
+  
+  @font-face {
+    font-family: Poppins-Medium;
+    src: url(./assets/fonts/Poppins/Poppins-Medium.ttf);
+  }
+  
+  @font-face {
+    font-family: Poppins-Bold;
+    src: url(./assets/fonts/Poppins/Poppins-Bold.ttf);
+  }
+  
+  @font-face {
+    font-family: Poppins-SemiBold;
+    src: url(./assets/fonts/Poppins/Poppins-SemiBold.ttf);
+  }
+  
+  @font-face {
+    font-family: Poppins-Light;
+    src: url(./assets/fonts/Poppins/Poppins-Light.ttf);
+  }
+  
+  @font-face {
+    font-family: Oswald-Light;
+    src: url(./assets/fonts/Oswald/Oswald-Light.ttf);
+  }
+  
+  @font-face {
+    font-family: Oswald-Regular;
+    src: url(./assets/fonts/Oswald/Oswald-Regular.ttf);
+  }
+  
+  @font-face {
+    font-family: Oswald-Medium;
+    src: url(./assets/fonts/Oswald/Oswald-Medium.ttf);
+  }
+  
+  @font-face {
+    font-family: Oswald-SemiBold;
+    src: url(./assets/fonts/Oswald/Oswald-SemiBold.ttf);
+  }
+  
+  @font-face {
+    font-family: Oswald-Bold;
+    src: url(./assets/fonts/Oswald/Oswald-Bold.ttf);
+  }
+  
