@@ -7,67 +7,188 @@
             <div class="logo">
 
                 <span hidden>movie<span style="color: red;">pedia</span></span>
-    
+
             </div>
-    
-            <div class="skip">
-    
+
+            <div class="skip" (click)="skip()">
+
                 <span>Skip</span>
-    
+
             </div>
 
         </div>
 
-        <div class="card">
+        <div class="swiperContainer">
 
-            <input type="email" name="email" class="input" placeholder="Email">
+            <swiper class="swiper" #formsSwiper [spaceBetween]="10" [noSwiping]="true" [allowTouchMove]="false">
+                <ng-template class="slide" swiperSlide>
 
-            <div style="display: flex; align-items: center;">
-                <input [type]="showPassword ? 'text' : 'password'" name="password" class="input" placeholder="Password">
-                <ion-icon class="passwordEye" [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
-                    (click)="showPassword = !showPassword"></ion-icon>
-            </div>
+                    <form class="card" [formGroup]="loginForm" (ngSubmit)="processEmailPasswordLogin()">
 
-            <div style="display: flex; justify-content: space-between;">
+                        <input type="email" name="email" class="input" placeholder="Email" formControlName="email"
+                            required>
 
-                <div class="rememberMeContainer">
+                        <div style="display: flex; align-items: center;">
+                            <input [type]="showPassword ? 'text' : 'password'" name="password" class="input"
+                                placeholder="Password" formControlName="password" required>
+                            <ion-icon class="passwordEye" [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+                                (click)="showPassword = !showPassword"></ion-icon>
+                        </div>
 
-                    <label class="checkBox">
-                        <input id="ch1" type="checkbox">
-                        <div class="transition"></div>
-                    </label>
-                    <label for="ch1">Remember me</label>
-                    
-                </div>
+                        <div style="display: flex; justify-content: space-between;">
 
-                <span class="colorPrimary">Forget password?</span>
+                            <div class="rememberMeContainer">
 
-            </div>
+                                <label class="checkBox">
+                                    <input id="ch1" type="checkbox" formControlName="rememberMe">
+                                    <div class="transition"></div>
+                                </label>
+                                <label for="ch1">Remember me</label>
 
-            <ion-button class="signInButton">Sign In</ion-button>
+                            </div>
 
-            <span style="margin-left: auto; margin-right: auto; font-family: 'Poppins-Light';">or</span>
+                            <span class="colorPrimary" id="open-forgot-password-modal">Forgot password?</span>
 
-            <button class="socialLogin" (click)="processGoogleLogin()">
+                        </div>
 
-                <img src="../../assets/pichonicons/icons8_google_100px.png" alt="">
+                        <ion-button class="signInButton" type="submit">
+                            <span *ngIf="!isSigningIn">Sign In</span>
+                            <ion-spinner *ngIf="isSigningIn" name="crescent"></ion-spinner>
+                        </ion-button>
 
-                <span>Continue with Google</span>
+                        <span style="margin-left: auto; margin-right: auto; font-family: 'Poppins-Light';">or</span>
 
-            </button>
+                        <button class="socialLogin" (click)="processGoogleLogin()">
 
-            <button class="socialLogin" (click)="processFacebookLogin()">
+                            <img src="../../assets/pichonicons/icons8_google_100px.png" alt="">
 
-                <img src="../../assets/pichonicons/icons8_facebook_100px.png" alt="">
+                            <span>Continue with Google</span>
 
-                <span>Continue with Facebook</span>
+                        </button>
 
-            </button>
+                        <button class="socialLogin" (click)="processFacebookLogin()">
 
-            <span>Don't have an account? <span class="colorPrimary">Sign Up</span></span>
+                            <img src="../../assets/pichonicons/icons8_facebook_100px.png" alt="">
+
+                            <span>Continue with Facebook</span>
+
+                        </button>
+
+                        <span>Don't have an account? <span class="colorPrimary"
+                                (click)="formsSwiper.swiperRef.slideTo(1)">Sign Up</span></span>
+
+                    </form>
+
+                </ng-template>
+                <ng-template class="slide" swiperSlide>
+
+                    <form class="card" [formGroup]="registrationForm" (ngSubmit)="processEmailPasswordRegistration()">
+
+                        <div class="inputContainer">
+                            <img class="icon" src="../../assets/iconsaxicons/outline/user.svg" alt="" hidden>
+                            <input type="text" name="email" class="input" placeholder="Name" formControlName="name"
+                                required>
+                        </div>
+
+                        <div class="inputContainer">
+                            <img class="icon" src="../../assets/iconsaxicons/outline/call.svg" alt="" hidden>
+                            <input type="tel" name="email" class="input" placeholder="Phone number"
+                                formControlName="phone" required>
+                        </div>
+
+                        <div class="inputContainer">
+                            <input type="email" name="email" class="input" placeholder="Email" formControlName="email"
+                                required>
+                        </div>
+
+                        <div class="inputContainer two">
+
+                            <div style="display: flex; align-items: center;">
+                                <img class="icon" src="../../assets/iconsaxicons/linear/lock-1.svg" alt="" hidden>
+                                <input [type]="showPasswordForRegistration ? 'text' : 'password'" name="password"
+                                    class="input" placeholder="Password" formControlName="password" required>
+                                <ion-icon class="passwordEye"
+                                    [name]="showPasswordForRegistration ? 'eye-off-outline' : 'eye-outline'"
+                                    (click)="showPasswordForRegistration = !showPasswordForRegistration"></ion-icon>
+                            </div>
+
+                            <div style="display: flex; align-items: center;">
+                                <img class="icon" src="../../assets/iconsaxicons/linear/lock-1.svg" alt="" hidden>
+                                <input type="password" name="password" class="input" placeholder="Re-Type Password"
+                                    formControlName="password_confirm" required>
+                            </div>
+
+                        </div>
+
+                        <ion-button class="signInButton" type="submit">
+                            <span *ngIf="!isSigningUp">Sign Up</span>
+                            <ion-spinner *ngIf="isSigningUp" name="crescent"></ion-spinner>
+                        </ion-button>
+
+                        <!-- <span style="margin-left: auto; margin-right: auto; font-family: 'Poppins-Light';">or</span>
+        
+                    <button class="socialLogin" (click)="processGoogleLogin()">
+        
+                        <img src="../../assets/pichonicons/icons8_google_100px.png" alt="">
+        
+                        <span>Continue with Google</span>
+        
+                    </button>
+        
+                    <button class="socialLogin" (click)="processFacebookLogin()">
+        
+                        <img src="../../assets/pichonicons/icons8_facebook_100px.png" alt="">
+        
+                        <span>Continue with Facebook</span>
+        
+                    </button> -->
+
+                        <div style="display: flex; align-items: center; gap: 10px; justify-content: center;
+                    margin-left: -16px;">
+                            <ion-icon name="chevron-back-outline"></ion-icon>
+                            <span (click)="formsSwiper.swiperRef.slideTo(0)">back to login</span>
+                        </div>
+                        <!-- 
+                    <span>Don't have an account? <span class="colorPrimary">Sign Up</span></span> -->
+
+                    </form>
+
+                </ng-template>
+            </swiper>
 
         </div>
 
     </section>
+
+    <ion-modal #forgotPasswordModal trigger="open-forgot-password-modal" [initialBreakpoint]="0.25"
+        [breakpoints]="[0, 0.25, 0.5, 0.75]">
+        <ng-template>
+            <ion-content>
+                <section class="forgetPasswordParent">
+
+                    <span class="title">Password Reset</span>
+
+                    <ion-input label="Registered Email" #passwordResetMailInput labelPlacement="floating"
+                        fill="outline"></ion-input>
+
+                    <ion-button class="sendMailButton" #sendMailButton [attr.data-message_status]="'false'"
+                        (click)="sendPasswordResetMail(passwordResetMailInput.value!.toString())">Send mail</ion-button>
+
+                    <div class="mailSuccess" *ngIf="passwordResetMailSent">
+
+                        <img src="../../assets/iconsaxicons/linear/tick-circle.svg" alt="">
+
+                        <span>Password reset mail sent successfully!</span>
+
+                        <span>Check your email inbox for a message from our app and carefully follow the instructions
+                            provided in the email. Reset your password as guided and then return to the app to log in
+                            using your newly created password.</span>
+
+                    </div>
+
+                </section>
+            </ion-content>
+        </ng-template>
+    </ion-modal>
 
 </ion-content>

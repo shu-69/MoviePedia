@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ToastController, ToastOptions, } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneralService {
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer, private toastCtrl: ToastController) { }
+  constructor(private storage: Storage, private http: HttpClient, private sanitizer: DomSanitizer, private toastCtrl: ToastController) { }
 
   async showToast(message: string, position: 'top' | 'bottom' | 'middle' = 'bottom', mode : 'ios' | 'md' = 'ios') {
 
@@ -24,6 +25,20 @@ export class GeneralService {
     const toast = await this.toastCtrl.create(options);
 
     toast.present()
+
+  }
+  
+  saveLoginDetails(username: string, password: string) {
+
+    this.storage.set('username', username);
+    this.storage.set('password', password);
+
+  }
+
+  removeLoginDetails() {
+
+    this.storage.remove('username');
+    this.storage.remove('password');
 
   }
 

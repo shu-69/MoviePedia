@@ -5,6 +5,7 @@ import { Movie, Params } from 'src/app/Params';
 import { GeneralService } from 'src/app/services/general.service';
 import { IMDBService } from 'src/app/services/imdb.service';
 import { SpeechRecognition, SpeechRecognitionListeningOptions } from '@awesome-cordova-plugins/speech-recognition/ngx';
+import { OMDBService } from 'src/app/services/omdb.service';
 
 @Component({
   selector: 'app-search-tab',
@@ -19,6 +20,7 @@ export class SearchTabPage implements OnInit {
 
   imageErrorAlt = 'assets/pichonicons/icons8_image_30px.png';
 
+  resultType: 'top' | 'releated' = 'top';
   isSearching: boolean = false;
   noResult: boolean = false;
 
@@ -29,7 +31,7 @@ export class SearchTabPage implements OnInit {
   nextPage: string | null | undefined = undefined;
   currentPrompt: string = '';
 
-  constructor(private IMDBServices: IMDBService, private generalServices: GeneralService, private speechRecognition: SpeechRecognition,
+  constructor(private IMDBServices: IMDBService, private OBDBServices: OMDBService, private generalServices: GeneralService, private speechRecognition: SpeechRecognition,
     private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -66,39 +68,105 @@ export class SearchTabPage implements OnInit {
 
     this.isSearching = true;
 
-    (await this.IMDBServices.search(prompt.toLowerCase(), pageNo)).subscribe({
+    switch(this.resultType) {
 
-      next: (data: any) => {
+      case 'top' : {
 
-        console.log('Got data', data)
+        (await this.IMDBServices.search(prompt.toLowerCase(), pageNo)).subscribe({
+
+          next: (data: any) => {
+    
+            console.log('Got data', data)
+    
+            this.isSearching = false;
+    
+            if(data.entries == 0){
+    
+              this.noResult = true;
+    
+            }else{
+              
+              this.noResult = false;
+    
+            }
+    
+            this.searchResultText = `Search results for '${prompt}'`;
+    
+            this.nextPage = data.next ? data.next.split('page=')[1] : undefined;
+            this.currentPrompt = prompt;
+    
+            this.infiniteScroll?.complete();
+    
+            data.results?.map((element: any) => { this.searchResults.push({ image: element.primaryImage ? element.primaryImage.url : this.imageErrorAlt }) });
+            //data.results?.map(async (element: any) =>{ this.searchResults.push({ image: element.primaryImage ? await this.generalServices.getBase64FromUrl(element.primaryImage.url, true, 0.2) : '' }) });
+    
+            this.changeDetectorRef.detectChanges()
+    
+          },
+    
+        })
+
+        break;
+
+      }
+
+      case 'releated' : {
+
+        (await this.OBDBServices.search(prompt.toLowerCase())).subscribe({
+
+          next: (data: any) => {
+    
+            console.log('Got data', data)
+    
+            this.isSearching = false;
+    
+            if(data.entries == 0){
+    
+              this.noResult = true;
+    
+            }else{
+              
+              this.noResult = false;
+    
+            }
+    
+            this.searchResultText = `Search results for '${prompt}'`;
+    
+            this.nextPage = data.next ? data.next.split('page=')[1] : undefined;
+            this.currentPrompt = prompt;
+    
+            this.infiniteScroll?.complete();
+    
+            data.results?.map((element: any) => { this.searchResults.push({ image: element.primaryImage ? element.primaryImage.url : this.imageErrorAlt }) });
+            //data.results?.map(async (element: any) =>{ this.searchResults.push({ image: element.primaryImage ? await this.generalServices.getBase64FromUrl(element.primaryImage.url, true, 0.2) : '' }) });
+    
+            this.changeDetectorRef.detectChanges()
+    
+          },
+
+        })
+
+        break;
+
+      }
+
+      default : {
 
         this.isSearching = false;
 
-        if(data.entries == 0){
+        break;
 
-          this.noResult = true;
+      }
 
-        }else{
-          
-          this.noResult = false;
+    }   
 
-        }
+  }
 
-        this.searchResultText = `Search results for '${prompt}'`;
+  handleSearchTypeChange(e: any){
 
-        this.nextPage = data.next ? data.next.split('page=')[1] : undefined;
-        this.currentPrompt = prompt;
+    e.target.checked ? this.resultType = 'releated' : this.resultType = 'top';
 
-        this.infiniteScroll?.complete();
-
-        data.results?.map((element: any) => { this.searchResults.push({ image: element.primaryImage ? element.primaryImage.url : this.imageErrorAlt }) });
-        //data.results?.map(async (element: any) =>{ this.searchResults.push({ image: element.primaryImage ? await this.generalServices.getBase64FromUrl(element.primaryImage.url, true, 0.2) : '' }) });
-
-        this.changeDetectorRef.detectChanges()
-
-      },
-
-    })
+    console.log(this.resultType)
 
   }
 

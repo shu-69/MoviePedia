@@ -1,0 +1,8 @@
+{
+	"appId": "com.moviepedia.app",
+	"appName": "MoviePedia",
+	"webDir": "www",
+	"server": {
+		"androidScheme": "https"
+	}
+}

@@ -40,6 +40,12 @@ ion-content {
 
         }
 
+        .swiperContainer {
+
+            margin-top: auto;
+
+        }
+
         .card {
 
             width: 100%;
@@ -52,6 +58,37 @@ ion-content {
             border-radius: 20px;
             backdrop-filter: blur(10px);
             font-family: 'Poppins-Regular';
+
+            .inputContainer {
+
+                display: flex;
+                align-items: center;
+
+                .input.withIcon {
+
+                    padding-left: 45px;
+
+                }
+
+                .icon,
+                ion-icon.icon {
+
+                    position: absolute;
+                    margin-left: 15px;
+                    width: 20px;
+                    aspect-ratio: 1;
+                    color: black;
+
+                }
+
+            }
+
+            .inputContainer.two {
+
+                grid-template-columns: repeat(2, calc(50% - 10px) calc(50% - 10px));
+                gap: 20px;
+
+            }
 
         }
 
@@ -189,6 +226,74 @@ ion-content {
         .colorPrimary {
 
             color: var(--ion-color-primary);
+
+        }
+
+    }
+
+    .forgetPasswordParent {
+
+        display: flex;
+        flex-flow: column;
+        gap: 15px;
+        padding: 20px;
+        font-family: 'Poppins-Regular';
+
+        .title {
+
+            font-family: 'Poppins-SemiBold';
+            font-size: 22px;
+
+        }
+
+        ion-input {
+
+            font-family: inherit;
+
+        }
+
+        .sendMailButton {
+
+            --box-shadow: none;
+            --border-radius: 10px;
+            text-transform: capitalize;
+            font-family: 'Poppins-Regular';
+
+        }
+
+        .mailSuccess {
+
+            display: flex;
+            flex-flow: column;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #5fd65f;
+
+            img {
+
+                filter: brightness(0) saturate(100%) invert(100%) sepia(22%);
+
+            }
+
+            .message {}
+
+        }
+
+    }
+
+}
+
+::ng-deep {
+
+    ion-modal .forgetPasswordParent {
+
+        ion-input .input-wrapper .label-text-wrapper .label-text {
+
+            line-height: 19px;
 
         }
 
