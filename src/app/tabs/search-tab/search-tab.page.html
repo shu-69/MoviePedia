@@ -17,7 +17,7 @@
     <div class="result-type-btn-container" *ngIf="searchResults && searchResults.length > 0 || noResult">
 
       <label class="switch btn-color-mode-switch">
-        <input value="1" id="color_mode" name="color_mode" type="checkbox" (change)="handleSearchTypeChange($event)">
+        <input value="1" id="color_mode" name="color_mode" type="checkbox" (change)="handleSearchTypeChange($event)" [(ngModel)]="searchTypeToogleValue">
         <label class="btn-color-mode-switch-inner" data-off="Top results" data-on="Related results" for="color_mode"></label>
       </label>
 

@@ -119,4 +119,26 @@ export class GeneralService {
     reader.readAsDataURL(blob);
   }
 
+  formatDuration(durationStr: string, outputFormat = 'short'): string {
+    const durationMinutes: number = parseInt(durationStr.split(" ")[0], 10);
+    const hours: number = Math.floor(durationMinutes / 60);
+    const minutes: number = durationMinutes % 60;
+  
+    if (outputFormat === "long") {
+      // Long format: "2 hours 30 mins"
+      return `${hours} hour${hours > 1 ? "s" : ""} ${minutes} min${minutes > 1 ? "s" : ""}`;
+    } else if (outputFormat === "short") {
+      // Short format: "2:30 hours"
+      return `${hours}:${minutes.toString().padStart(2, "0")} hours`;
+    } else {
+      return ""; // Invalid outputFormat. Use 'long' or 'short'.
+    }
+  } 
+
+  splitString(inputString: string): string[] {
+    // Split the input string using the comma separator
+    const resultArray: string[] = inputString.split(',').map(lang => lang.trim());
+    return resultArray;
+  }
+  
 }

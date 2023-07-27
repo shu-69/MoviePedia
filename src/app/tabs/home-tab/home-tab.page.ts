@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { SetOverlaysWebViewOptions, StatusBar, Style, StyleOptions } from '@capacitor/status-bar';
-import { Movie, TitleMovie } from 'src/app/Params';
+import { TitleMovie } from 'src/app/Params';
 import { IMDBService, List } from 'src/app/services/imdb.service';
 
 import Swiper, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';

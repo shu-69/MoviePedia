@@ -1,0 +1,114 @@
+<ion-content [fullscreen]="true">
+
+  <section class="parent">
+
+    <div class="header">
+
+      <button class="back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+
+    </div>
+
+    <div class="poster">
+
+      <div class="footer-gradient"></div>
+
+      <img src="https://flxt.tmsimg.com/assets/p13937884_v_v12_af.jpg" alt="">
+
+    </div>
+
+    <div class="movie-title-detais-container">
+
+      <div class="title">
+
+        <div>
+
+          <span>Venom</span>
+
+        </div>
+
+        <div>
+          <ion-icon name="share-social"></ion-icon>
+        </div>
+
+      </div>
+
+      <div class="detailsChipsContainer">
+
+        <ion-chip style="--background: #0484bb;" *ngIf="movieDetails">{{movieDetails.Genre}}</ion-chip>
+
+        <ion-chip style="--background: #8b03bb;" *ngIf="movieDetails">{{movieDetails.Runtime}}</ion-chip>
+
+        <ion-chip style="--background: #bb8703;" *ngIf="movieDetails">
+          <ion-label>{{movieDetails.imdbRating}}</ion-label>
+          <ion-icon name="star"></ion-icon>
+        </ion-chip>
+
+      </div>
+
+    </div>
+
+    <div class="movie-desctiption-container">
+
+      <div class="content" *ngIf="movieDetails">
+
+        <span class="label">Plot</span>
+
+        <p>{{movieDetails.Plot}}</p>
+
+      </div>
+
+      <div class="content" style="flex-flow: row; gap: 20px;">
+
+        <div class="content" *ngIf="movieDetails">
+
+          <span class="label">Director</span>
+
+          <p>{{movieDetails.Director}}</p>
+
+        </div>
+
+        <div class="content" *ngIf="movieDetails">
+
+          <span class="label">Writer</span>
+
+          <p>{{movieDetails.Writer}}</p>
+
+        </div>
+
+        <div class="content" *ngIf="movieDetails">
+
+          <span class="label">Production</span>
+
+          <p>{{movieDetails.Production}}</p>
+
+        </div>
+
+      </div>
+
+      <div class="content style1" *ngIf="movieDetails">
+
+        <div class="icon">
+          <ion-icon name="language"></ion-icon>
+        </div>
+
+        <div class="details">
+
+          <span class="label">Language</span>
+
+          <div class="chips">
+
+              <span *ngFor="let language of movieDetails.Language">{{language}}</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</ion-content>

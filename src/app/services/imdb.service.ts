@@ -24,13 +24,27 @@ export class IMDBService {
 
   constructor(private http: HttpClient) { }
 
+  async getRatings(id: string) {
+
+    const url = `https://moviesdatabase.p.rapidapi.com/titles/${id}/ratings`;
+    const options = {
+      headers: {
+        'X-RapidAPI-Key': this.RapidApi['X-RapidAPI-Key'],
+        'X-RapidAPI-Host': this.RapidApi['X-RapidAPI-Host']
+      },
+    };
+
+    return this.http.get(url, options);
+
+  }
+
   async getUpcoming(limit?: number) {
 
     const url = 'https://moviesdatabase.p.rapidapi.com/titles/x/upcoming';
     const options = {
       headers: {
-        'X-RapidAPI-Key': '61631fd008msh31430e1aa47f61cp1fe7dajsn062be728c5a9',
-        'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+        'X-RapidAPI-Key': this.RapidApi['X-RapidAPI-Key'],
+        'X-RapidAPI-Host': this.RapidApi['X-RapidAPI-Host']
       },
       params: {
         limit: limit ? limit : 10
@@ -46,8 +60,8 @@ export class IMDBService {
     const url = 'https://moviesdatabase.p.rapidapi.com/titles';
     const options = {
       headers: {
-        'X-RapidAPI-Key': '61631fd008msh31430e1aa47f61cp1fe7dajsn062be728c5a9',
-        'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+        'X-RapidAPI-Key': this.RapidApi['X-RapidAPI-Key'],
+        'X-RapidAPI-Host': this.RapidApi['X-RapidAPI-Host']
       },
       params: {
         list: list ? list : '',
@@ -64,8 +78,8 @@ export class IMDBService {
     const url = 'https://moviesdatabase.p.rapidapi.com/titles/search/keyword/' + prompt;
     const options = {
       headers: {
-        'X-RapidAPI-Key': '61631fd008msh31430e1aa47f61cp1fe7dajsn062be728c5a9',
-        'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+        'X-RapidAPI-Key': this.RapidApi['X-RapidAPI-Key'],
+        'X-RapidAPI-Host': this.RapidApi['X-RapidAPI-Host']
       },
       params: {
         page : pageNo? pageNo : ''

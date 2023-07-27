@@ -17,7 +17,7 @@ export interface TitleMovie {
 
 }
 
-export interface Movie {
+export interface SearchResultMovie {
 
     image: string
         

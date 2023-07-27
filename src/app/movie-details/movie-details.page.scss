@@ -1,0 +1,200 @@
+ion-content {
+
+    --background: black;
+
+    .parent {
+
+        .header {
+
+            display: flex;
+            margin-top: 60px;
+            padding: 0 15px;
+            width: 100%;
+            position: absolute;
+            z-index: 1;
+
+            button.back {
+
+                width: 45px;
+                height: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                border-radius: 50%;
+                background: rgba(0, 0, 0, 0.4);
+                font-size: 20px;
+
+            }
+
+        }
+
+        .poster {
+
+            position: relative;
+
+            img {
+
+                max-height: 60vh;
+                width: 100%;
+                object-fit: cover;
+
+            }
+
+            .footer-gradient {
+
+                height: 200px;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                background: linear-gradient(to bottom, transparent, black);
+
+            }
+
+        }
+
+        .movie-title-detais-container {
+
+            display: flex;
+            flex-flow: column;
+            gap: 10px;
+            margin: -50px 10px 0 10px;
+            padding: 20px 25px;
+            background: rgb(255 255 255 / 5%);
+            position: relative;
+            border-radius: 20px;
+
+            .title {
+
+                display: flex;
+                justify-content: space-between;
+                font-family: 'Poppins-Regular';
+                font-size: 20px;
+
+                div {
+
+                    display: flex;
+                    align-items: center;
+
+                }
+
+            }
+
+            .detailsChipsContainer {
+
+                display: flex;
+                flex-flow: wrap;
+                gap: 10px;
+                white-space: nowrap;
+
+                ion-chip {
+
+                    font-family: 'Poppins-Regular';
+                    font-size: 12px;
+                    padding: 18px 18px;
+                    border-radius: 30px;
+
+                    ion-icon {
+
+                        font-size: 14px;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .movie-desctiption-container {
+
+            display: flex;
+            flex-flow: column;
+            gap: 15px;
+            padding: 15px;
+
+            .content {
+
+                display: flex;
+                flex-flow: column;
+                gap: 10px;
+
+                .label {
+
+                    font-family: 'Poppins-Medium';
+                    font-size: 16px;
+                    color: var(--ion-color-primary);
+
+                }
+
+                p {
+
+                    margin: 0;
+                    font-family: 'Poppins-Light';
+                    font-size: 14px;
+
+                }
+
+            }
+
+            .content.style1 {
+
+                flex-flow: row;
+                gap: 20px;
+                border: 2px solid lightgray;
+                border-radius: 30px;
+                padding: 15px 20px;
+                margin-top: 15px;
+                align-items: center;
+                overflow: hidden;
+
+                .icon {
+
+                    display: flex;
+                    align-items: center;
+                    color: var(--ion-color-primary);
+                    margin: 0 5px;
+
+                    ion-icon {
+
+                        font-size: 20px;
+
+                    }
+
+                }
+
+                .details {
+
+                    width: 100%;
+                    display: flex;
+                    flex-flow: column;
+                    gap: 10px;
+                    overflow: auto;
+
+                    .chips {
+
+                        display: flex;
+                        gap: 15px;
+
+                        span {
+                            
+                            color: white;
+                            background: #5b5b5b59;
+                            padding: 10px 20px;
+                            font-family: "Poppins-Regular";
+                            font-size: 12px;
+                            border-radius: 20px;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

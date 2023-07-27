@@ -94,7 +94,7 @@ ion-content {
 
         .btn-color-mode-switch>label.btn-color-mode-switch-inner {
             margin: 0px;
-            width: 220px;
+            width: 190px;
             height: 40px;
             background-color: #858585;
             border-radius: 26px;
@@ -110,7 +110,7 @@ ion-content {
             content: attr(data-on);
             position: absolute;
             font-size: 12px;
-            top: 10px;
+            top: 13px;
             right: 20px;
             color: #222;
             align-items: center;
@@ -127,7 +127,7 @@ ion-content {
             display: flex;
             justify-content: center;
             left: 3px;
-            top: 2px;
+            top: 2.5px;
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0px 0px 6px -2px #111;
@@ -135,6 +135,7 @@ ion-content {
             color: #b8b8b8;
             padding: 5px 12px;
             align-items: center;
+            width: max-content;
         }
 
         .btn-color-mode-switch input[type="checkbox"] {
@@ -154,7 +155,7 @@ ion-content {
 
         .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:after {
             content: attr(data-on);
-            left: 104px;
+            left: 91px;
         }
 
         .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:before {

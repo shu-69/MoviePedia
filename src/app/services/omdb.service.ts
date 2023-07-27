@@ -10,6 +10,14 @@ export class OMDBService {
 
   constructor(private http: HttpClient) { }
 
+  async getMovieDetails(id: string) {
+    
+    const url = `http://www.omdbapi.com/?i=${id}&apikey=${OMDB_API_KEY}`;
+
+    return await this.http.get(url);
+
+  }
+
   async search(prompt: string) {
 
     const url = `http://www.omdbapi.com/?s=${prompt}&apikey=${OMDB_API_KEY}`;

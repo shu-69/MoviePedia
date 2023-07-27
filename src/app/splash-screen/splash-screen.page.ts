@@ -16,7 +16,7 @@ export class SplashScreenPage implements OnInit {
 
     setTimeout(() => {
       
-      this.navCtrl.navigateRoot('home')
+      this.navCtrl.navigateRoot('movie-details')
 
     }, 2000);
 

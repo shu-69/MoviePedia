@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'authenticate',
+    redirectTo: 'movie-details',
     pathMatch: 'full'
   },
   {
@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'authenticate',
     loadChildren: () => import('./authenticate/authenticate.module').then( m => m.AuthenticatePageModule)
+  },
+  {
+    path: 'movie-details',
+    loadChildren: () => import('./movie-details/movie-details.module').then( m => m.MovieDetailsPageModule)
   },
 ];
 

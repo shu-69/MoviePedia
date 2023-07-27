@@ -2,8 +2,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { SetOverlaysWebViewOptions, StatusBar, Style, StyleOptions } from '@capacitor/status-bar';
 
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
-import { Movie } from '../Params';
-import { IonTabButton } from '@ionic/angular';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 

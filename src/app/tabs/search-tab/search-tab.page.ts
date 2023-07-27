@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { StatusBar, SetOverlaysWebViewOptions, StyleOptions, Style } from '@capacitor/status-bar';
 import { IonInfiniteScroll, ToastController, ToastOptions } from '@ionic/angular';
-import { Movie, Params } from 'src/app/Params';
+import { SearchResultMovie, Params } from 'src/app/Params';
 import { GeneralService } from 'src/app/services/general.service';
 import { IMDBService } from 'src/app/services/imdb.service';
 import { SpeechRecognition, SpeechRecognitionListeningOptions } from '@awesome-cordova-plugins/speech-recognition/ngx';
@@ -20,11 +20,12 @@ export class SearchTabPage implements OnInit {
 
   imageErrorAlt = 'assets/pichonicons/icons8_image_30px.png';
 
-  resultType: 'top' | 'releated' = 'top';
+  resultType: 'top' | 'related' = 'top';
   isSearching: boolean = false;
   noResult: boolean = false;
+  searchTypeToogleValue: boolean = false;
 
-  searchResults: Movie[] = []
+  searchResults: SearchResultMovie[] = []
 
   searchResultText: string = '';
 
@@ -70,7 +71,7 @@ export class SearchTabPage implements OnInit {
 
     switch(this.resultType) {
 
-      case 'top' : {
+      case 'related' : {
 
         (await this.IMDBServices.search(prompt.toLowerCase(), pageNo)).subscribe({
 
@@ -110,7 +111,7 @@ export class SearchTabPage implements OnInit {
 
       }
 
-      case 'releated' : {
+      case 'top' : {
 
         (await this.OBDBServices.search(prompt.toLowerCase())).subscribe({
 
@@ -120,7 +121,7 @@ export class SearchTabPage implements OnInit {
     
             this.isSearching = false;
     
-            if(data.entries == 0){
+            if(data.totalResults == "0" || data.Response === 'False' || data.Error === 'Movie not found!'){
     
               this.noResult = true;
     
@@ -137,7 +138,7 @@ export class SearchTabPage implements OnInit {
     
             this.infiniteScroll?.complete();
     
-            data.results?.map((element: any) => { this.searchResults.push({ image: element.primaryImage ? element.primaryImage.url : this.imageErrorAlt }) });
+            data.Search?.map((element: any) => { this.searchResults.push({ image: element.Poster === 'N/A' ? this.imageErrorAlt : element.Poster }) });
             //data.results?.map(async (element: any) =>{ this.searchResults.push({ image: element.primaryImage ? await this.generalServices.getBase64FromUrl(element.primaryImage.url, true, 0.2) : '' }) });
     
             this.changeDetectorRef.detectChanges()
@@ -164,9 +165,13 @@ export class SearchTabPage implements OnInit {
 
   handleSearchTypeChange(e: any){
 
-    e.target.checked ? this.resultType = 'releated' : this.resultType = 'top';
+    e.target.checked ? this.resultType = 'related' : this.resultType = 'top';
 
-    console.log(this.resultType)
+    console.log(this.resultType, e.target.checked)
+
+    this.changeDetectorRef.detectChanges()
+
+    this.doSearch(this.currentPrompt, true)
 
   }
 
