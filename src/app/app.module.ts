@@ -23,6 +23,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 
 import * as firebase from 'firebase/app';
+import { YoutubeVideoPlayer } from '@awesome-cordova-plugins/youtube-video-player/ngx';
 
 firebase.initializeApp(environment.firebase);
 
@@ -31,7 +32,7 @@ firebase.initializeApp(environment.firebase);
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule, FormsModule, ComponentsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SpeechRecognition, Storage],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SpeechRecognition, Storage, YoutubeVideoPlayer],
   bootstrap: [AppComponent ],
 })
 export class AppModule {}

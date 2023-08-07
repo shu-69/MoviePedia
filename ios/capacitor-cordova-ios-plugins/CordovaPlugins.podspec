@@ -12,5 +12,6 @@
     s.xcconfig = {'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) COCOAPODS=1 WK_WEB_VIEW_ONLY=1' }
     s.dependency 'CapacitorCordova'
     s.swift_version  = '5.1'
-    s.frameworks = 'Speech'
+    s.dependency 'XCDYouTubeKit', '~> 2.7'
+    s.frameworks = 'Speech', 'MediaPlayer', 'AVFoundation', 'JavaScriptCore'
   end

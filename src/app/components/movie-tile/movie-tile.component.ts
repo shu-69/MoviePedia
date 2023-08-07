@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'movie-tile',
@@ -9,6 +11,7 @@ export class MovieTileComponent  implements OnInit {
 
   @Input() src : string = '';
   @Input() compressedImg : string = '';  // TODO ::
+  @Input() id : string = '';
   
   @Input() parentMaxWidth : string = '100%';
   @Input() parentWidth : string = 'fit-content';
@@ -21,7 +24,7 @@ export class MovieTileComponent  implements OnInit {
   @Input() imgBackground : string = '';
 
 
-  constructor() { }
+  constructor(public navCtrl: NavController, public generalServices: GeneralService) { }
 
   ngOnInit() {}
 

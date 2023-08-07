@@ -1,5 +1,6 @@
 <section class="parent"
-[ngStyle]="{'max-width': parentMaxWidth, 'width': parentWidth, 'height': parentHeight}">
+[ngStyle]="{'max-width': parentMaxWidth, 'width': parentWidth, 'height': parentHeight}"
+(click)="generalServices.openMovieDetails(id, navCtrl)">
 
   <img [src]="src" [ngStyle]="{'max-height': imgMaxHeight, 'border-radius': imgBorderRadius,
     'height': imgHeight, 'object-fit': imgObjectFit, 'background': imgBackground}" />

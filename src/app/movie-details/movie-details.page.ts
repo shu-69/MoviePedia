@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IMDBService } from '../services/imdb.service';
 import { OMDBService } from '../services/omdb.service';
 import { GeneralService } from '../services/general.service';
+import { SetOverlaysWebViewOptions, StatusBar } from '@capacitor/status-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.page.html',
   styleUrls: ['./movie-details.page.scss'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class MovieDetailsPage implements OnInit {
 
@@ -13,13 +17,46 @@ export class MovieDetailsPage implements OnInit {
 
   movieDetails: any = undefined;
 
-  constructor(private IMDBServices: IMDBService, private OMDBServices: OMDBService, private generalServices: GeneralService) {
+  constructor(private activatedRoute: ActivatedRoute, private location: Location, private IMDBServices: IMDBService, private OMDBServices: OMDBService, public generalServices: GeneralService) {
 
+    this.activatedRoute.queryParams.subscribe((data: any) => {
 
+      this.movieId = data.imdbId;
+
+      this.fetchMovieDetails();
+
+      console.log(data)
+
+    })
 
   }
 
   async ngOnInit() {
+
+    
+
+  }
+
+  ionViewWillEnter() {
+
+    // StatusBar.hide();
+
+    let options: SetOverlaysWebViewOptions = {
+      overlay: true
+    }
+
+    StatusBar.setOverlaysWebView(options)
+    // StatusBar.setBackgroundColor({ 'color': Params.COLORS.PRIMARY_BACKGROUND })
+
+    // let style: StyleOptions = {
+    //   style: Style.Dark
+    // }
+
+    // StatusBar.setStyle(style)
+
+  }
+
+  async fetchMovieDetails() {
 
     // Fetch movie details
 
@@ -36,7 +73,9 @@ export class MovieDetailsPage implements OnInit {
         console.log(result)
           
       },error : (err) => {
-          
+        
+        console.log(err)
+
       },
 
     })
@@ -58,6 +97,10 @@ export class MovieDetailsPage implements OnInit {
 
   }
 
+  goBack() {
 
+    this.location.back()
+
+  }
 
 }

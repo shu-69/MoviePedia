@@ -1,11 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { StatusBar, SetOverlaysWebViewOptions, StyleOptions, Style } from '@capacitor/status-bar';
-import { IonInfiniteScroll, ToastController, ToastOptions } from '@ionic/angular';
+import { IonInfiniteScroll, NavController, ToastController, ToastOptions } from '@ionic/angular';
 import { SearchResultMovie, Params } from 'src/app/Params';
 import { GeneralService } from 'src/app/services/general.service';
 import { IMDBService } from 'src/app/services/imdb.service';
 import { SpeechRecognition, SpeechRecognitionListeningOptions } from '@awesome-cordova-plugins/speech-recognition/ngx';
 import { OMDBService } from 'src/app/services/omdb.service';
+import { NavigationOptions } from '@ionic/angular/providers/nav-controller';
 
 @Component({
   selector: 'app-search-tab',
@@ -32,8 +33,8 @@ export class SearchTabPage implements OnInit {
   nextPage: string | null | undefined = undefined;
   currentPrompt: string = '';
 
-  constructor(private IMDBServices: IMDBService, private OBDBServices: OMDBService, private generalServices: GeneralService, private speechRecognition: SpeechRecognition,
-    private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private IMDBServices: IMDBService, private OBDBServices: OMDBService, public generalServices: GeneralService, private speechRecognition: SpeechRecognition,
+    private changeDetectorRef: ChangeDetectorRef, public navCtrl: NavController) { }
 
   ngOnInit() {
 
@@ -98,7 +99,7 @@ export class SearchTabPage implements OnInit {
     
             this.infiniteScroll?.complete();
     
-            data.results?.map((element: any) => { this.searchResults.push({ image: element.primaryImage ? element.primaryImage.url : this.imageErrorAlt }) });
+            data.results?.map((element: any) => { this.searchResults.push({ image: element.primaryImage ? element.primaryImage.url : this.imageErrorAlt, imdbID: element.id }) });
             //data.results?.map(async (element: any) =>{ this.searchResults.push({ image: element.primaryImage ? await this.generalServices.getBase64FromUrl(element.primaryImage.url, true, 0.2) : '' }) });
     
             this.changeDetectorRef.detectChanges()
@@ -138,7 +139,7 @@ export class SearchTabPage implements OnInit {
     
             this.infiniteScroll?.complete();
     
-            data.Search?.map((element: any) => { this.searchResults.push({ image: element.Poster === 'N/A' ? this.imageErrorAlt : element.Poster }) });
+            data.Search?.map((element: any) => { this.searchResults.push({ image: element.Poster === 'N/A' ? this.imageErrorAlt : element.Poster, imdbID: element.imdbID }) });
             //data.results?.map(async (element: any) =>{ this.searchResults.push({ image: element.primaryImage ? await this.generalServices.getBase64FromUrl(element.primaryImage.url, true, 0.2) : '' }) });
     
             this.changeDetectorRef.detectChanges()

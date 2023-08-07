@@ -2,14 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ToastController, ToastOptions, } from '@ionic/angular';
+import { NavController, NavigationOptions } from '@ionic/angular/providers/nav-controller';
 import { Storage } from '@ionic/storage-angular';
+import { YoutubeVideoPlayer } from '@awesome-cordova-plugins/youtube-video-player/ngx';
+import { Share } from '@capacitor/share';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneralService {
 
-  constructor(private storage: Storage, private http: HttpClient, private sanitizer: DomSanitizer, private toastCtrl: ToastController) { }
+  constructor(private storage: Storage, private http: HttpClient, private youtube: YoutubeVideoPlayer, private sanitizer: DomSanitizer, private toastCtrl: ToastController) { }
 
   async showToast(message: string, position: 'top' | 'bottom' | 'middle' = 'bottom', mode : 'ios' | 'md' = 'ios') {
 
@@ -39,6 +42,45 @@ export class GeneralService {
 
     this.storage.remove('username');
     this.storage.remove('password');
+
+  }
+
+  openMovieDetails(imdbId: string, navCtrl: NavController) {
+
+    const options : NavigationOptions = {
+
+      queryParams: {
+
+        'imdbId': imdbId
+
+      }
+
+    }
+
+    navCtrl.navigateForward('movie-details', options);
+
+  }
+
+  openYoutubeVideo(videoId: string) {
+
+    this.youtube.openVideo(videoId);
+
+  }
+
+  async shareContent(title: string, text: string, dialogTitle: string, url?: string) {
+
+    await Share.share({
+      title: title,
+      text: text,
+      url: url,
+      dialogTitle: dialogTitle,
+    });
+
+  }
+
+  getAppDownloadUrl() : string {
+
+    return 'https://ionicframework.com/docs/native/share';
 
   }
 
@@ -140,5 +182,5 @@ export class GeneralService {
     const resultArray: string[] = inputString.split(',').map(lang => lang.trim());
     return resultArray;
   }
-  
+
 }

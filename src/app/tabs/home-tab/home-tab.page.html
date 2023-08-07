@@ -42,9 +42,10 @@
 
       <div class="container scroll-verticall">
 
-        <movie-tile [src]="movie.compressedImg" *ngFor="let movie of topWeekendMovies"
-        parentMaxWidth="40vw" parentWidth="max-content" parentHeight="100%" imgMaxHeight="100%" imgBorderRadius="12px" imgHeight="100%">
-
+        <movie-tile [src]="movie.compressedImg" [id]="movie.id" *ngFor="let movie of topWeekendMovies"
+        parentMaxWidth="40vw" parentWidth="max-content" parentHeight="100%" imgMaxHeight="100%" imgBorderRadius="12px" imgHeight="100%"
+        >
+        <!-- (click)="generalServices.openMovieDetails(movie.id, navCtrl)" -->
         </movie-tile>
 
         <div class="viewMore">

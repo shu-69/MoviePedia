@@ -19,6 +19,8 @@ export interface TitleMovie {
 
 export interface SearchResultMovie {
 
-    image: string
+    image: string,
+    imdbID?: string,
+    id?: string,
         
 }

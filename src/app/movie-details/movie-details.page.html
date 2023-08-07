@@ -1,35 +1,51 @@
 <ion-content [fullscreen]="true">
 
+  <div class="loader" *ngIf="!movieDetails">
+
+    <ion-spinner name="crescent"></ion-spinner>
+
+  </div>
+
   <section class="parent">
 
     <div class="header">
 
-      <button class="back">
+      <button class="back" (click)="goBack()">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
 
     </div>
 
-    <div class="poster">
+    <div class="poster" *ngIf="movieDetails">
+
+      <div class="play" (click)="generalServices.openYoutubeVideo('00YPh8HiNfs')">
+        
+        <ion-icon name="play"></ion-icon>
+
+      </div>
 
       <div class="footer-gradient"></div>
 
-      <img src="https://flxt.tmsimg.com/assets/p13937884_v_v12_af.jpg" alt="">
+      <img [src]="movieDetails ? movieDetails.Poster : ''" alt="">
+
+      <!-- https://flxt.tmsimg.com/assets/p13937884_v_v12_af.jpg -->
 
     </div>
 
-    <div class="movie-title-detais-container">
+    <div class="movie-title-detais-container" [ngStyle]="{
+      'margin-top' : (movieDetails?.Poster != '' && movieDetails?.Poster.toLowerCase() != 'N/A'.toLowerCase()) ? '-50px' : '150px'
+    }">
 
-      <div class="title">
+      <div class="title" *ngIf="movieDetails">
 
         <div>
 
-          <span>Venom</span>
+          <span>{{movieDetails ? movieDetails.Title : ''}}</span>
 
         </div>
 
         <div>
-          <ion-icon name="share-social"></ion-icon>
+          <ion-icon name="share-social" (click)="generalServices.shareContent('MoviePedia', 'Just discovered \'' + movieDetails.Title + '\' on my movie app! You\'ve got to see this. Download the app and join the cinematic adventure! 🍿🎬', 'Share with', generalServices.getAppDownloadUrl())"></ion-icon>
         </div>
 
       </div>
@@ -51,7 +67,8 @@
 
     <div class="movie-desctiption-container">
 
-      <div class="content" *ngIf="movieDetails">
+      <div class="content"
+        *ngIf="movieDetails && movieDetails.Plot && movieDetails.Plot?.toLowerCase() != 'N/A'.toLowerCase()">
 
         <span class="label">Plot</span>
 
@@ -99,7 +116,48 @@
 
           <div class="chips">
 
-              <span *ngFor="let language of movieDetails.Language">{{language}}</span>
+            <span *ngFor="let language of movieDetails.Language">{{language}}</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="content style1"
+        *ngIf="movieDetails && movieDetails.BoxOffice && movieDetails.BoxOffice?.toLowerCase() != 'N/A'.toLowerCase()">
+
+        <div class="icon">
+          <ion-icon name="cash"></ion-icon>
+        </div>
+
+        <div class="details">
+
+          <span class="label">BoxOffice</span>
+
+          <div class="chips">
+
+            <span>{{movieDetails.BoxOffice}}</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="content style1" *ngIf="movieDetails && movieDetails.Awards?.toLowerCase() != 'N/A'.toLowerCase()">
+
+        <div class="icon">
+          <ion-icon name="trophy"></ion-icon>
+        </div>
+
+        <div class="details">
+
+          <span class="label">Awards</span>
+
+          <div class="chips">
+
+            <span>{{movieDetails.Awards}}</span>
 
           </div>
 

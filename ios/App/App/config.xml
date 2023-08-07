@@ -6,5 +6,9 @@
     <param name="ios-package" value="SpeechRecognition"/>
   </feature>
 
+  <feature name="YoutubeVideoPlayer">
+    <param name="ios-package" value="YoutubeVideoPlayer"/>
+  </feature>
+
   
 </widget>

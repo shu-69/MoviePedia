@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { SetOverlaysWebViewOptions, StatusBar, Style, StyleOptions } from '@capacitor/status-bar';
+import { NavController } from '@ionic/angular';
 import { TitleMovie } from 'src/app/Params';
+import { GeneralService } from 'src/app/services/general.service';
 import { IMDBService, List } from 'src/app/services/imdb.service';
 
 import Swiper, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
@@ -28,7 +30,7 @@ export class HomeTabPage implements OnInit {
 
   isContentLoading : boolean = false;
 
-  constructor(private IMDBServices: IMDBService, private http: HttpClient, private sanitizer: DomSanitizer) {
+  constructor(public navCtrl: NavController, private IMDBServices: IMDBService, public generalServices: GeneralService, private http: HttpClient, private sanitizer: DomSanitizer) {
 
 
 

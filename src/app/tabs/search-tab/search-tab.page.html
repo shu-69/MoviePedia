@@ -28,9 +28,11 @@
 
     <div class="resultsContainer">
 
-      <movie-tile [src]="result.image" *ngFor="let result of searchResults" imgBorderRadius="6px"
+      <movie-tile [src]="result.image" [id]="result.imdbID ? result.imdbID : result.id!" *ngFor="let result of searchResults" imgBorderRadius="6px"
         [imgObjectFit]="result.image == imageErrorAlt ? 'none' : 'cover'"
-        [imgBackground]="result.image == imageErrorAlt ? 'rgb(225 225 225 / 10%)' : ''">
+        [imgBackground]="result.image == imageErrorAlt ? 'rgb(225 225 225 / 10%)' : ''"
+        >
+        <!-- (click)="generalServices.openMovieDetails(result.imdbID ? result.imdbID : result.id!, navCtrl)" -->
       </movie-tile>
 
     </div>
