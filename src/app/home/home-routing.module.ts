@@ -39,6 +39,15 @@ const routes: Routes = [
           }
         ]
       },
+      {
+        path: 'tab4',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../tabs/trailer-tab/trailer-tab.module').then(m => m.TrailerTabPageModule)
+          }
+        ]
+      },
     ]
   }
 ];

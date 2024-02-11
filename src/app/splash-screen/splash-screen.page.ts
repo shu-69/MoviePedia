@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SetOverlaysWebViewOptions, StatusBar, Style, StyleOptions } from '@capacitor/status-bar';
 import { Params } from '../Params';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-splash-screen',
@@ -10,19 +11,44 @@ import { NavController } from '@ionic/angular';
 })
 export class SplashScreenPage implements OnInit {
 
-  isLoading : boolean = false;
+  isLoading: boolean = false;
 
-  constructor(private navCtrl: NavController) {
+  constructor(private storage: Storage, private navCtrl: NavController) {
 
-    setTimeout(() => {
-      
-      this.navCtrl.navigateRoot('movie-details')
 
-    }, 2000);
 
-   }
 
-  ngOnInit() {
+
+  }
+
+  async ngOnInit() {
+
+    if (await this.storage.get('loggin-skipped')) {
+
+      setTimeout(() => {
+
+        this.navCtrl.navigateRoot('home')
+
+      }, 2000);
+
+    } else if (await this.storage.get('username')) {
+
+      setTimeout(() => {
+
+        this.navCtrl.navigateRoot('home')
+
+      }, 2000);
+
+    } else {
+
+      setTimeout(() => {
+
+        this.navCtrl.navigateRoot('authenticate')
+
+      }, 2000);
+
+    }
+
   }
 
   ionViewWillEnter() {
@@ -34,13 +60,6 @@ export class SplashScreenPage implements OnInit {
     }
 
     StatusBar.setOverlaysWebView(options)
-    // StatusBar.setBackgroundColor({ 'color': Params.COLORS.PRIMARY_BACKGROUND })
-
-    // let style: StyleOptions = {
-    //   style: Style.Dark
-    // }
-
-    // StatusBar.setStyle(style)
 
   }
 

@@ -22,7 +22,7 @@ export class AuthenticatePage implements OnInit {
 
   isLoading: Boolean = false;
 
-  passwordResetMailSent : Boolean = false;
+  passwordResetMailSent: Boolean = false;
 
   loginForm: FormGroup = this.formBuilder.group({
     email: ['shu@bcs.in', [Validators.required]],
@@ -58,7 +58,7 @@ export class AuthenticatePage implements OnInit {
 
   async processEmailPasswordLogin() {
 
-    if(this.isSigningIn)
+    if (this.isSigningIn)
       return
 
     if (this.loginForm.valid) {
@@ -255,9 +255,9 @@ export class AuthenticatePage implements OnInit {
 
       console.error(errorCode)
 
-      switch(errorCode) {
+      switch (errorCode) {
 
-        case 'auth/invalid-email' : {
+        case 'auth/invalid-email': {
 
           this.generalServices.showToast('Enter a valid email.', 'bottom', 'ios');
 
@@ -265,7 +265,7 @@ export class AuthenticatePage implements OnInit {
 
         }
 
-        case 'auth/user-not-found' : {
+        case 'auth/user-not-found': {
 
           this.generalServices.showToast('Email is not registered.', 'bottom', 'ios');
 
@@ -273,13 +273,13 @@ export class AuthenticatePage implements OnInit {
 
         }
 
-        default : {
+        default: {
 
           this.generalServices.showToast('Email sending failed!', 'bottom', 'ios');
 
         }
 
-      }      
+      }
 
     })
 
